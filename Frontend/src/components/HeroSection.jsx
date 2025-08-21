@@ -1,6 +1,7 @@
+// src/components/HeroSection.jsx
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowRight } from 'react-icons/fa';
+//import { FaArrowRight } from 'react-icons/fa';
 import FeatureCards from './FeaturesCards';
 
 export default function HeroSection() {
@@ -12,7 +13,7 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-950 to-indigo-900 text-white flex flex-col relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-950 via-indigo-900 to-indigo-950 text-white flex flex-col relative overflow-hidden">
       {/* COSMIC ANIMATED ELEMENTS */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {[...Array(30)].map((_, i) => (
@@ -68,52 +69,32 @@ export default function HeroSection() {
       </div>
 
       {/* HOW IT WORKS SECTION */}
-      <div className="py-16 bg-indigo-950 text-white px-6 relative z-10">
+      <div className="py-16 px-6 relative z-10 bg-indigo-950/80">
         <div className="max-w-4xl mx-auto text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center">How It Works</h2>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-          {/* Step 1 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="bg-indigo-800 rounded-full w-16 h-16 flex items-center justify-center mb-3 text-2xl font-bold border-4 border-yellow-400">1</div>
-            <div className="font-semibold mb-1 text-center">Set Your Base Personality</div>
-            <div className="text-gray-300 text-sm text-center max-w-xs">
-              Choose your lens for dream interpretation: symbolic, spiritual, or scientific.
+          {["Set Your Base Personality", "Submit Dream", "Interpretation", "Receive Detailed Analysis"].map((step, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center border border-yellow-400/30 rounded-lg p-4 bg-[#2C3253]/80 backdrop-blur-sm">
+              <div className="bg-indigo-800 rounded-full w-16 h-16 flex items-center justify-center mb-3 text-2xl font-bold border-4 border-yellow-400">
+                {idx + 1}
+              </div>
+              <div className="font-semibold mb-1 text-center">{step}</div>
+              <div className="text-gray-300 text-sm text-center max-w-xs">
+                {[
+                  "Choose your lens for dream interpretation: symbolic, spiritual, or scientific.",
+                  "Enter your dream details in the journal.",
+                  "Instantly receive a symbolic, spiritual, or scientific interpretation.",
+                  "Get a nurturing, in-depth analysis tailored to your base personality."
+                ][idx]}
+              </div>
             </div>
-          </div>
-          {/* Arrow */}
-          <FaArrowRight className="hidden md:block text-yellow-400 text-3xl mx-2" />
-          {/* Step 2 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="bg-indigo-800 rounded-full w-16 h-16 flex items-center justify-center mb-3 text-2xl font-bold border-4 border-yellow-400">2</div>
-            <div className="font-semibold mb-1 text-center">Submit Dream</div>
-            <div className="text-gray-300 text-sm text-center max-w-xs">
-              Enter your dream details in the journal.
-            </div>
-          </div>
-          <FaArrowRight className="hidden md:block text-yellow-400 text-3xl mx-2" />
-          {/* Step 3 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="bg-indigo-800 rounded-full w-16 h-16 flex items-center justify-center mb-3 text-2xl font-bold border-4 border-yellow-400">3</div>
-            <div className="font-semibold mb-1 text-center">Interpretation</div>
-            <div className="text-gray-300 text-sm text-center max-w-xs">
-              Instantly receive a symbolic, spiritual, or scientific interpretation.
-            </div>
-          </div>
-          <FaArrowRight className="hidden md:block text-yellow-400 text-3xl mx-2" />
-          {/* Step 4 */}
-          <div className="flex flex-col items-center text-center">
-            <div className="bg-indigo-800 rounded-full w-16 h-16 flex items-center justify-center mb-3 text-2xl font-bold border-4 border-yellow-400">4</div>
-            <div className="font-semibold mb-1 text-center">Receive Detailed Analysis</div>
-            <div className="text-gray-300 text-sm text-center max-w-xs">
-              Get a nurturing, in-depth analysis tailored to your base personality.
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
       {/* FEATURE CARDS */}
-      <div ref={featuresRef}>
+      <div ref={featuresRef} className="relative z-10 bg-indigo-900/70 py-16">
         <FeatureCards />
       </div>
     </div>
